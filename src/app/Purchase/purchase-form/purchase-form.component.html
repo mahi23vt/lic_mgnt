@@ -1,0 +1,137 @@
+<div class="container-fluid">
+  <h2>Add Purchase</h2>
+  <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="">PO Number</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('purchaseOrderNumber')?.invalid &&
+          purchaseForm.get('purchaseOrderNumber')?.touched
+        "
+        formControlName="purchaseOrderNumber"
+        type="text"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('purchaseOrderNumber')?.valid &&
+          purchaseForm.get('purchaseOrderNumber')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">invoice Number</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('invoiceNumber')?.invalid &&
+          purchaseForm.get('invoiceNumber')?.touched
+        "
+        formControlName="invoiceNumber"
+        type="text"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('invoiceNumber')?.valid &&
+          purchaseForm.get('invoiceNumber')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">invoiceDate</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('invoiceDate')?.invalid &&
+          purchaseForm.get('invoiceDate')?.touched
+        "
+        formControlName="invoiceDate"
+        type="date"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('invoiceDate')?.valid &&
+          purchaseForm.get('invoiceDate')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">invoiceType</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('invoiceType')?.invalid &&
+          purchaseForm.get('invoiceType')?.touched
+        "
+        formControlName="invoiceType"
+        type="text"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('invoiceType')?.valid &&
+          purchaseForm.get('invoiceType')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">licenses Alloted</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('licensesAlloted')?.invalid &&
+          purchaseForm.get('licensesAlloted')?.touched
+        "
+        formControlName="licensesAlloted"
+        type="number"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('licensesAlloted')?.valid &&
+          purchaseForm.get('licensesAlloted')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">licenses Generated</label>
+      <input
+        [class.is-invalid]="
+          purchaseForm.get('licensesGenerated')?.invalid &&
+          purchaseForm.get('licensesGenerated')?.touched
+        "
+        formControlName="licensesGenerated"
+        type="number"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          purchaseForm.get('licensesGenerated')?.valid &&
+          purchaseForm.get('licensesGenerated')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <div class="form-group">
+      <label for="">customerName</label>
+      <select formControlName="customerName" class="form-control">
+        <option value="" disabled selected>Select Customer</option>
+        <option *ngFor="let customer of customers" [value]="customer.id">
+            {{customer.customerName}}
+        </option>
+      </select>
+      <small
+        [class.d-none]="
+          purchaseForm.get('customerName')?.valid &&
+          purchaseForm.get('customerName')?.untouched
+        "
+        class="text-danger"
+      ></small>
+    </div>
+    <button class="btn btn-primary m-2">Submit</button>
+    <button class="btn btn-secondary m-2">Cancel</button>
+</form>
+</div>
