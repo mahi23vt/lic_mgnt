@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h2>Add Device</h2>
+  {{ deviceForm.value | json }}
+  <form [formGroup]="deviceForm" action="">
+    <div class="form-group">
+      <label for="">Device Name</label>
+      <input
+        [class.is-invalid]="
+          deviceForm.get('deviceName')?.invalid &&
+          deviceForm.get('deviceName')?.touched
+        "
+        formControlName="deviceName"
+        type="text"
+        class="form-control"
+      />
+      <small [class.d-none]="deviceForm.get('deviceName')?.valid ||
+                                deviceForm.get('deviceName')?.untouched"  class="text-danger">Device Name is required</small>
+    </div>
+    <div>
+      <button class="btn btn-primary m2">Submit</button>
+      <button class="btn btn-secondary m2">Cancel</button>
+    </div>
+  </form>
+</div>

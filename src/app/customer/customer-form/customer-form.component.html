@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <h2>Add Customer</h2>
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="">Customer Name</label>
+      <input
+        [class.is-invalid]="
+          customerForm.get('customerName')?.invalid &&
+          customerForm.get('customerName')?.touched
+        "
+        formControlName="customerName"
+        type="text"
+        class="form-control"
+      />
+      <small
+        [class.d-none]="
+          customerForm.get('customerName')?.valid ||
+          customerForm.get('customerName')?.untouched
+        "
+        class="text-danger"
+        >Customer Name is required</small
+      >
+      <button class="btn btn-primary m2">Submit</button>
+      <button class="btn btn-secondary m2">Cancel</button>
+    </div>
+  </form>
+</div>
