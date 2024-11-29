@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <!-- <h2 class="mb-4 text-center">Devices</h2> -->
+    
+    <!-- Add Button to Navigate to Device Form -->
+    <div class="text-end mb-3">
+        <button class="btn btn-success" (click)="navigateToAddCustomer()">Add Customer</button>
+        <!-- <button class="btn btn-success" >Add Device</button> -->
+    </div>
+    
+    <!-- Make the table responsive -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered border-dark">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="border-dark border-2">#</th>
+                    <th scope="col" class="border-dark border-2">Device Type</th>
+                    <th scope="col" class="border-dark border-2">Created At</th>
+                    <th scope="col" class="border-dark border-2">Created By</th>
+                    <th scope="col" class="border-dark border-2">Last Modified At</th>
+                    <th scope="col" class="border-dark border-2">Last Modified By</th>
+                    <th scope="col" class="border-dark border-2 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers; let i = index">
+                    <th scope="row" class="border-dark border-2">{{ i + 1 }}</th>
+                    <td class="border-dark border-2">{{ customer.customerName }}</td>
+                    <td class="border-dark border-2">{{ customer.createdAt | date: 'medium' }}</td>
+                    <td class="border-dark border-2">{{ customer.createdBy }}</td>
+                    <td class="border-dark border-2">{{ customer.lastModifiedAt | date: 'medium' }}</td>
+                    <td class="border-dark border-2">{{ customer.lastModifiedBy }}</td>
+                    <td class="border-dark border-2 text-center">
+                        <button class="btn btn-sm btn-primary mr-2" (click)="onEdit()">Edit</button>
+                        <button class="btn btn-sm btn-danger" (click)="onDelete(customer)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

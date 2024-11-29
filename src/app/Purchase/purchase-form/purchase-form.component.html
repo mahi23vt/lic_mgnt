@@ -1,137 +1,168 @@
-<div class="container-fluid">
-  <h2>Add Purchase</h2>
-  <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="">PO Number</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('purchaseOrderNumber')?.invalid &&
-          purchaseForm.get('purchaseOrderNumber')?.touched
-        "
-        formControlName="purchaseOrderNumber"
-        type="text"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('purchaseOrderNumber')?.valid &&
-          purchaseForm.get('purchaseOrderNumber')?.untouched
-        "
-        class="text-danger"
-      ></small>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Add Purchase</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
+            <!-- PO Number -->
+            <div class="form-group mb-3">
+              <label for="purchaseOrderNumber" class="form-label">PO Number</label>
+              <input
+                id="purchaseOrderNumber"
+                formControlName="purchaseOrderNumber"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('purchaseOrderNumber')?.invalid && purchaseForm.get('purchaseOrderNumber')?.touched,
+                  'is-valid': purchaseForm.get('purchaseOrderNumber')?.valid && purchaseForm.get('purchaseOrderNumber')?.touched
+                }"
+              />
+              <div
+                *ngIf="purchaseForm.get('purchaseOrderNumber')?.invalid && purchaseForm.get('purchaseOrderNumber')?.touched"
+                class="invalid-feedback"
+              >
+                PO Number is required.
+              </div>
+            </div>
+
+            <!-- Invoice Number -->
+            <div class="form-group mb-3">
+              <label for="invoiceNumber" class="form-label">Invoice Number</label>
+              <input
+                id="invoiceNumber"
+                formControlName="invoiceNumber"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('invoiceNumber')?.invalid && purchaseForm.get('invoiceNumber')?.touched,
+                  'is-valid': purchaseForm.get('invoiceNumber')?.valid && purchaseForm.get('invoiceNumber')?.touched
+                }"
+              />
+              <div
+                *ngIf="purchaseForm.get('invoiceNumber')?.invalid && purchaseForm.get('invoiceNumber')?.touched"
+                class="invalid-feedback"
+              >
+                Invoice Number is required.
+              </div>
+            </div>
+
+            <!-- Invoice Date -->
+            <div class="form-group mb-3">
+              <label for="invoiceDate" class="form-label">Invoice Date</label>
+              <input
+                id="invoiceDate"
+                formControlName="invoiceDate"
+                type="date"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('invoiceDate')?.invalid && purchaseForm.get('invoiceDate')?.touched,
+                  'is-valid': purchaseForm.get('invoiceDate')?.valid && purchaseForm.get('invoiceDate')?.touched
+                }"
+              />
+              <div
+                *ngIf="purchaseForm.get('invoiceDate')?.invalid && purchaseForm.get('invoiceDate')?.touched"
+                class="invalid-feedback"
+              >
+                Invoice Date is required.
+              </div>
+            </div>
+
+            <!-- Invoice Type -->
+            <div class="form-group mb-3">
+              <label for="invoiceType" class="form-label">Invoice Type</label>
+              <input
+                id="invoiceType"
+                formControlName="invoiceType"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('invoiceType')?.invalid && purchaseForm.get('invoiceType')?.touched,
+                  'is-valid': purchaseForm.get('invoiceType')?.valid && purchaseForm.get('invoiceType')?.touched
+                }"
+              />
+              <div
+                *ngIf="purchaseForm.get('invoiceType')?.invalid && purchaseForm.get('invoiceType')?.touched"
+                class="invalid-feedback"
+              >
+                Invoice Type is required.
+              </div>
+            </div>
+
+            <!-- Licenses Allotted -->
+            <div class="form-group mb-3">
+              <label for="licensesAlloted" class="form-label">Licenses Allotted</label>
+              <input
+                id="licensesAlloted"
+                formControlName="licensesAlloted"
+                type="number"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('licensesAlloted')?.invalid && purchaseForm.get('licensesAlloted')?.touched,
+                  'is-valid': purchaseForm.get('licensesAlloted')?.valid && purchaseForm.get('licensesAlloted')?.touched
+                }"
+              />
+              <div
+                *ngIf="purchaseForm.get('licensesAlloted')?.invalid && purchaseForm.get('licensesAlloted')?.touched"
+                class="invalid-feedback"
+              >
+                Please provide the number of licenses allotted.
+              </div>
+            </div>
+
+            <!-- Licenses Generated -->
+            <div class="form-group mb-3">
+              <label for="licensesGenerated" class="form-label">Licenses Generated</label>
+              <input
+                id="licensesGenerated"
+                formControlName="licensesGenerated"
+                type="number"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.errors?.['mismatch'],
+                  'is-valid': purchaseForm.get('licensesGenerated')?.valid && purchaseForm.get('licensesGenerated')?.touched
+                }"
+              />
+              <div *ngIf="purchaseForm.errors?.['mismatch']" class="invalid-feedback">
+                License Generated cannot be more than allotted.
+              </div>
+            </div>
+
+            <!-- Customer Name -->
+            <div class="form-group mb-3">
+              <label for="customerName" class="form-label">Customer Name</label>
+              <select
+                id="customerName"
+                formControlName="customerName"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': purchaseForm.get('customerName')?.invalid && purchaseForm.get('customerName')?.touched,
+                  'is-valid': purchaseForm.get('customerName')?.valid && purchaseForm.get('customerName')?.touched
+                }"
+              >
+                <option value="" disabled selected>Select Customer</option>
+                <option *ngFor="let customer of customers" [value]="customer.id">
+                  {{ customer.customerName }}
+                </option>
+              </select>
+              <div
+                *ngIf="purchaseForm.get('customerName')?.invalid && purchaseForm.get('customerName')?.touched"
+                class="invalid-feedback"
+              >
+                Please select a customer.
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary" [disabled]="purchaseForm.invalid">Submit</button>
+              <button type="button" class="btn btn-secondary" >Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="">invoice Number</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('invoiceNumber')?.invalid &&
-          purchaseForm.get('invoiceNumber')?.touched
-        "
-        formControlName="invoiceNumber"
-        type="text"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('invoiceNumber')?.valid &&
-          purchaseForm.get('invoiceNumber')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <div class="form-group">
-      <label for="">invoiceDate</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('invoiceDate')?.invalid &&
-          purchaseForm.get('invoiceDate')?.touched
-        "
-        formControlName="invoiceDate"
-        type="date"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('invoiceDate')?.valid &&
-          purchaseForm.get('invoiceDate')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <div class="form-group">
-      <label for="">invoiceType</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('invoiceType')?.invalid &&
-          purchaseForm.get('invoiceType')?.touched
-        "
-        formControlName="invoiceType"
-        type="text"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('invoiceType')?.valid &&
-          purchaseForm.get('invoiceType')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <div class="form-group">
-      <label for="">licenses Alloted</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('licensesAlloted')?.invalid &&
-          purchaseForm.get('licensesAlloted')?.touched
-        "
-        formControlName="licensesAlloted"
-        type="number"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('licensesAlloted')?.valid &&
-          purchaseForm.get('licensesAlloted')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <div class="form-group">
-      <label for="">licenses Generated</label>
-      <input
-        [class.is-invalid]="
-          purchaseForm.get('licensesGenerated')?.invalid &&
-          purchaseForm.get('licensesGenerated')?.touched
-        "
-        formControlName="licensesGenerated"
-        type="number"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          purchaseForm.get('licensesGenerated')?.valid &&
-          purchaseForm.get('licensesGenerated')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <div class="form-group">
-      <label for="">customerName</label>
-      <select formControlName="customerName" class="form-control">
-        <option value="" disabled selected>Select Customer</option>
-        <option *ngFor="let customer of customers" [value]="customer.id">
-            {{customer.customerName}}
-        </option>
-      </select>
-      <small
-        [class.d-none]="
-          purchaseForm.get('customerName')?.valid &&
-          purchaseForm.get('customerName')?.untouched
-        "
-        class="text-danger"
-      ></small>
-    </div>
-    <button class="btn btn-primary m-2">Submit</button>
-    <button class="btn btn-secondary m-2">Cancel</button>
-</form>
+  </div>
 </div>

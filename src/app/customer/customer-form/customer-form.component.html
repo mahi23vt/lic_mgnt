@@ -1,27 +1,41 @@
-<div class="container-fluid">
-  <h2>Add Customer</h2>
-  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="">Customer Name</label>
-      <input
-        [class.is-invalid]="
-          customerForm.get('customerName')?.invalid &&
-          customerForm.get('customerName')?.touched
-        "
-        formControlName="customerName"
-        type="text"
-        class="form-control"
-      />
-      <small
-        [class.d-none]="
-          customerForm.get('customerName')?.valid ||
-          customerForm.get('customerName')?.untouched
-        "
-        class="text-danger"
-        >Customer Name is required</small
-      >
-      <button class="btn btn-primary m2">Submit</button>
-      <button class="btn btn-secondary m2">Cancel</button>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Add Customer</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <!-- Customer Name Input -->
+            <div class="form-group mb-3">
+              <label for="customerName" class="form-label">Customer Name</label>
+              <input
+                id="customerName"
+                formControlName="customerName"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': customerForm.get('customerName')?.invalid && customerForm.get('customerName')?.touched,
+                  'is-valid': customerForm.get('customerName')?.valid && customerForm.get('customerName')?.touched
+                }"
+              />
+              <div
+                *ngIf="customerForm.get('customerName')?.invalid && customerForm.get('customerName')?.touched"
+                class="invalid-feedback"
+              >
+                Customer Name is required.
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary" [disabled]="customerForm.invalid">Submit</button>
+              <button type="button" class="btn btn-secondary" >Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
 </div>

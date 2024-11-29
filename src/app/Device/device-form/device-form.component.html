@@ -1,25 +1,41 @@
-<div class="container-fluid">
-  <h2>Add Device</h2>
-  {{ deviceForm.value | json }}
-  <form [formGroup]="deviceForm" action="">
-    <div class="form-group">
-      <label for="">Device Name</label>
-      <input
-        [class.is-invalid]="
-          deviceForm.get('deviceName')?.invalid &&
-          deviceForm.get('deviceName')?.touched
-        "
-        formControlName="deviceName"
-        type="text"
-        class="form-control"
-      />
-      <small [class.d-none]="deviceForm.get('deviceName')?.valid ||
-                             deviceForm.get('deviceName')?.untouched"
-                             class="text-danger">Device Name is required</small>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Add Device</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+            <!-- Device Name Input -->
+            <div class="form-group mb-3">
+              <label for="deviceName" class="form-label">Device Name</label>
+              <input
+                id="deviceName"
+                formControlName="deviceName"
+                type="text"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': deviceForm.get('deviceName')?.invalid && deviceForm.get('deviceName')?.touched,
+                  'is-valid': deviceForm.get('deviceName')?.valid && deviceForm.get('deviceName')?.touched
+                }"
+              />
+              <div
+                *ngIf="deviceForm.get('deviceName')?.invalid && deviceForm.get('deviceName')?.touched"
+                class="invalid-feedback"
+              >
+                Device Name is required.
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary" [disabled]="deviceForm.invalid">Submit</button>
+              <button type="button" class="btn btn-secondary" >Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div>
-      <button class="btn btn-primary m2">Submit</button>
-      <button class="btn btn-secondary m2">Cancel</button>
-    </div>
-  </form>
+  </div>
 </div>

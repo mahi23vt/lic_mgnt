@@ -1,0 +1,113 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-10">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white text-center">
+            <h3>Add License</h3>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="licenseForm" (ngSubmit)="onSubmit()">
+              <!-- Serial No Input -->
+              <div class="form-group mb-3">
+                <label for="serialNo" class="form-label">Serial No</label>
+                <input
+                  id="serialNo"
+                  formControlName="serialNo"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': licenseForm.get('serialNo')?.invalid && licenseForm.get('serialNo')?.touched,
+                    'is-valid': licenseForm.get('serialNo')?.valid && licenseForm.get('serialNo')?.touched
+                  }"
+                />
+                <div
+                  *ngIf="licenseForm.get('serialNo')?.invalid && licenseForm.get('serialNo')?.touched"
+                  class="invalid-feedback"
+                >
+                  Serial No is required.
+                </div>
+              </div>
+  
+              <!-- License Key Input -->
+              <div class="form-group mb-3">
+                <label for="licenseKey" class="form-label">License Key</label>
+                <input
+                  id="licenseKey"
+                  formControlName="licenseKey"
+                  type="text"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': licenseForm.get('licenseKey')?.invalid && licenseForm.get('licenseKey')?.touched,
+                    'is-valid': licenseForm.get('licenseKey')?.valid && licenseForm.get('licenseKey')?.touched
+                  }"
+                />
+                <div
+                  *ngIf="licenseForm.get('licenseKey')?.invalid && licenseForm.get('licenseKey')?.touched"
+                  class="invalid-feedback"
+                >
+                  License Key is required.
+                </div>
+              </div>
+  
+              <!-- Invoice No Select -->
+              <div class="form-group mb-3">
+                <label for="invoiceNo" class="form-label">Invoice No</label>
+                <select
+                  id="invoiceNo"
+                  formControlName="invoiceNo"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': licenseForm.get('invoiceNo')?.invalid && licenseForm.get('invoiceNo')?.touched,
+                    'is-valid': licenseForm.get('invoiceNo')?.valid && licenseForm.get('invoiceNo')?.touched
+                  }"
+                >
+                  <option value="" disabled selected>Select the invoice</option>
+                  <option *ngFor="let purchase of purchases" [value]="purchase.invoiceNo">
+                    {{ purchase.invoiceNo }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="licenseForm.get('invoiceNo')?.invalid && licenseForm.get('invoiceNo')?.touched"
+                  class="invalid-feedback"
+                >
+                  Please select an invoice.
+                </div>
+              </div>
+  
+              <!-- Device Type Select -->
+              <div class="form-group mb-3">
+                <label for="deviceType" class="form-label">Device Type</label>
+                <select
+                  id="deviceType"
+                  formControlName="deviceType"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid': licenseForm.get('deviceType')?.invalid && licenseForm.get('deviceType')?.touched,
+                    'is-valid': licenseForm.get('deviceType')?.valid && licenseForm.get('deviceType')?.touched
+                  }"
+                >
+                  <option value="" disabled selected>Select Device Type</option>
+                  <option *ngFor="let device of devices" [value]="device.deviceType">
+                    {{ device.deviceType }}
+                  </option>
+                </select>
+                <div
+                  *ngIf="licenseForm.get('deviceType')?.invalid && licenseForm.get('deviceType')?.touched"
+                  class="invalid-feedback"
+                >
+                  Please select a device type.
+                </div>
+              </div>
+  
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary" [disabled]="licenseForm.invalid">Submit</button>
+                <button type="button" class="btn btn-secondary" >Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder,Validators,FormArray } from '@angular/forms';
 import { PurchaseService } from '../purchase.service';
 import { ServiceService } from '../../customer/service.service';
+import { DataValidator } from '../../customer/customer-form/data.validator';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class PurchaseFormComponent {
       licensesAlloted : ['',Validators.required],
       licensesGenerated : ['', Validators.required],
       customerName : ['', Validators.required]
-    });
+    }, {validator : DataValidator} );
     this.getCustomers();
   }
   getCustomers()
