@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { Validators, FormArray } from '@angular/forms';
 import { ServiceService } from '../service.service';
 import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
@@ -26,7 +28,7 @@ export class CustomerFormComponent {
   onSubmit() {
     console.log(this.customerForm.value);
     this.customerData ={
-      customerName : this.customerForm.get('customerName')?.value
+      customerName : this.customerForm.get('customerName')?.value?.trim()
     };
     this.customerService.register(this.customerForm.value)
         .subscribe(

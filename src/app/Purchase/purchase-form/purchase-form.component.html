@@ -13,8 +13,10 @@
               <input
                 id="purchaseOrderNumber"
                 formControlName="purchaseOrderNumber"
+
                 type="text"
                 class="form-control"
+                maxlength="255"
                 [ngClass]="{
                   'is-invalid': purchaseForm.get('purchaseOrderNumber')?.invalid && purchaseForm.get('purchaseOrderNumber')?.touched,
                   'is-valid': purchaseForm.get('purchaseOrderNumber')?.valid && purchaseForm.get('purchaseOrderNumber')?.touched
@@ -35,6 +37,7 @@
                 id="invoiceNumber"
                 formControlName="invoiceNumber"
                 type="text"
+                maxlength="255"
                 class="form-control"
                 [ngClass]="{
                   'is-invalid': purchaseForm.get('invoiceNumber')?.invalid && purchaseForm.get('invoiceNumber')?.touched,
@@ -77,6 +80,7 @@
                 id="invoiceType"
                 formControlName="invoiceType"
                 type="text"
+                maxlength="255"
                 class="form-control"
                 [ngClass]="{
                   'is-invalid': purchaseForm.get('invoiceType')?.invalid && purchaseForm.get('invoiceType')?.touched,
@@ -98,6 +102,8 @@
                 id="licensesAlloted"
                 formControlName="licensesAlloted"
                 type="number"
+                min="0" 
+                max="1000000"
                 class="form-control"
                 [ngClass]="{
                   'is-invalid': purchaseForm.get('licensesAlloted')?.invalid && purchaseForm.get('licensesAlloted')?.touched,
@@ -110,6 +116,12 @@
               >
                 Please provide the number of licenses allotted.
               </div>
+              <!-- <p *ngIf="purchaseForm.get('licensesAlloted')?.hasError('max')">
+                Value cannot exceed 1,000,000.
+              </p>
+              <p *ngIf="purchaseForm.get('licensesAlloted')?.hasError('min')">
+                Value cannot be less than 0.
+              </p> -->
             </div>
 
             <!-- Licenses Generated -->
@@ -120,6 +132,7 @@
                 formControlName="licensesGenerated"
                 type="number"
                 class="form-control"
+                min="0" 
                 [ngClass]="{
                   'is-invalid': purchaseForm.errors?.['mismatch'],
                   'is-valid': purchaseForm.get('licensesGenerated')?.valid && purchaseForm.get('licensesGenerated')?.touched
@@ -128,6 +141,7 @@
               <div *ngIf="purchaseForm.errors?.['mismatch']" class="invalid-feedback">
                 License Generated cannot be more than allotted.
               </div>
+              
             </div>
 
             <!-- Customer Name -->
@@ -144,7 +158,7 @@
               >
                 <option value="" disabled selected>Select Customer</option>
                 <option *ngFor="let customer of customers" [value]="customer.id">
-                  {{ customer.customerName }}
+                  {{customer.customerName }}
                 </option>
               </select>
               <div

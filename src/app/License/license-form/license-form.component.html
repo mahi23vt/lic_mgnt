@@ -15,6 +15,7 @@
                   formControlName="serialNo"
                   type="text"
                   class="form-control"
+                  maxlength="255"
                   [ngClass]="{
                     'is-invalid': licenseForm.get('serialNo')?.invalid && licenseForm.get('serialNo')?.touched,
                     'is-valid': licenseForm.get('serialNo')?.valid && licenseForm.get('serialNo')?.touched
@@ -35,6 +36,7 @@
                   id="licenseKey"
                   formControlName="licenseKey"
                   type="text"
+                  maxlength="255"
                   class="form-control"
                   [ngClass]="{
                     'is-invalid': licenseForm.get('licenseKey')?.invalid && licenseForm.get('licenseKey')?.touched,
@@ -63,7 +65,7 @@
                 >
                   <option value="" disabled selected>Select the invoice</option>
                   <option *ngFor="let purchase of purchases" [value]="purchase.invoiceNo">
-                    {{ purchase.invoiceNo }}
+                    {{ purchase.invoiceNo + ' | '+purchase.customerName }}
                   </option>
                 </select>
                 <div

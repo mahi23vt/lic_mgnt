@@ -40,8 +40,20 @@
                     <td class="border-dark border-2">{{ purchase.lastModifiedAt | date: 'medium' }}</td>
                     <td class="border-dark border-2">{{ purchase.lastModifiedBy }}</td>
                     <td class="border-dark border-2 text-center">
-                        <button class="btn btn-sm btn-primary mr-2" (click)="onEdit()">Edit</button>
-                        <button class="btn btn-sm btn-danger" (click)="onDelete(purchase)">Delete</button>
+                        <!-- <button class="btn btn-sm btn-primary mr-2" (click)="onEdit()">Edit</button> -->
+                        <!-- <button class="btn btn-sm btn-danger" (click)="onDelete(purchase)">Delete</button> -->
+                        <div class="d-flex justify-content-around align-items-center">
+                            <!-- Edit Button -->
+                            <button type="button" class="btn btn-primary rounded-circle" (click)="onEdit()" aria-label="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                          
+                            <!-- Delete Button -->
+                            <button type="button" class="btn btn-danger rounded-circle" (click)="onDelete(purchase)" aria-label="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </div>
+                          
                     </td>
                 </tr>
             </tbody>

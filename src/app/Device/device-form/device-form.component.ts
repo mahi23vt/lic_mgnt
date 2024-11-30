@@ -28,7 +28,7 @@ export class DeviceFormComponent {
     // console.log(this.deviceForm.);
     console.log(this.deviceForm.valid);
     this.deviceData = {
-      deviceType : this.deviceForm.get('deviceName')?.value
+      deviceType : this.deviceForm.get('deviceName')?.value?.trim()
     };
     this.service.register(this.deviceData).subscribe(
       Response => {console.log("Success", Response),

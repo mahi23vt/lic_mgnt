@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'licenseData', component: LicenseDataComponent},
   {path:'purchaseData', component: PurchaseDataComponent},
   {path: 'dashboard', component: DashboardComponent},
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   
   
 ];

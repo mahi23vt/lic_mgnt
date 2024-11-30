@@ -15,6 +15,7 @@
                 formControlName="deviceName"
                 type="text"
                 class="form-control"
+                maxlength="255"
                 [ngClass]="{
                   'is-invalid': deviceForm.get('deviceName')?.invalid && deviceForm.get('deviceName')?.touched,
                   'is-valid': deviceForm.get('deviceName')?.valid && deviceForm.get('deviceName')?.touched

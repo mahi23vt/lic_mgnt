@@ -15,6 +15,7 @@
                 formControlName="customerName"
                 type="text"
                 class="form-control"
+                maxlength="255"
                 [ngClass]="{
                   'is-invalid': customerForm.get('customerName')?.invalid && customerForm.get('customerName')?.touched,
                   'is-valid': customerForm.get('customerName')?.valid && customerForm.get('customerName')?.touched

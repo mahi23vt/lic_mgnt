@@ -1,1 +1,63 @@
-<p>license-data works!</p>
+<div class="container mt-4">
+    <!-- <h2 class="mb-4 text-center">Devices</h2> -->
+    
+    <!-- Add Button to Navigate to Device Form -->
+    <div class="text-end mb-3">
+        <button class="btn btn-success" (click)="navigateToAddLicense()">Add License</button>
+        <!-- <button class="btn btn-success" >Add Device</button> -->
+    </div>
+    
+    <!-- Make the table responsive -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered border-dark">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="border-dark border-2">#</th>
+                    <th scope="col" class="border-dark border-2">SerialNo</th>
+                    <th scope="col" class="border-dark border-2">licenseKey</th>
+                    <th scope="col" class="border-dark border-2">invoiceNo</th>
+                    <th scope="col" class="border-dark border-2">active</th>
+                    <th scope="col" class="border-dark border-2">customerName</th>
+                    <th scope="col" class="border-dark border-2">DeviceType</th>
+                    <th scope="col" class="border-dark border-2">createdAt</th>
+                    <th scope="col" class="border-dark border-2">createdBy</th>
+                    <th scope="col" class="border-dark border-2">lastModifiedAt</th>
+                    <th scope="col" class="border-dark border-2">lastModifiedBy</th>
+                    <th scope="col" class="border-dark border-2 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let license of licenses; let i = index">
+                    <th scope="row" class="border-dark border-2">{{ i + 1 }}</th>
+                    <td class="border-dark border-2">{{ license.serialNo }}</td>
+                    <td class="border-dark border-2">{{ license.licenseKey }}</td>
+                    <td class="border-dark border-2">{{ license.invoiceNo }}</td>
+                    <td class="border-dark border-2">{{ license.active }}</td>
+                    <td class="border-dark border-2">{{ license.customerName }}</td>
+                    <td class="border-dark border-2">{{ license.deviceType }}</td>
+                    <td class="border-dark border-2">{{ license.createdAt | date: 'medium' }}</td>
+                    <td class="border-dark border-2">{{ license.createdBy }}</td>
+                    <td class="border-dark border-2">{{ license.lastModifiedAt | date: 'medium' }}</td>
+                    <td class="border-dark border-2">{{ license.lastModifiedBy }}</td>
+                    <td class="border-dark border-2 text-center">
+                        <!-- <button class="btn btn-sm btn-primary mr-2" (click)="onEdit()">Edit</button> -->
+                        <!-- <button class="btn btn-sm btn-danger" (click)="onDelete(license)">Delete</button> -->
+                        <div class="d-flex justify-content-around align-items-center">
+                            <!-- Edit Button -->
+                            <button type="button" class="btn btn-primary rounded-circle" (click)="onEdit()" aria-label="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                          
+                            <!-- Delete Button -->
+                            <button type="button" class="btn btn-danger rounded-circle"(click)="onDelete(license)" aria-label="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </div>
+                          
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
