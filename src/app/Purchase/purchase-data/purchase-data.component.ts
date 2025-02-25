@@ -33,6 +33,7 @@ export class PurchaseDataComponent {
     this.service.getPurchases().subscribe(
       (data: any[]) => {
         this.purchases = data;
+        console.log(data);
       }
     )
   }

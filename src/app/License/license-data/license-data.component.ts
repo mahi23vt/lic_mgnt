@@ -33,6 +33,7 @@ export class LicenseDataComponent {
     this.service.getLicenses().subscribe(
       (data: any[]) => {
         this.licenses = data;
+        // console.log(data);
       }
     )
   }

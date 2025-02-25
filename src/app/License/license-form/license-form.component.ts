@@ -15,6 +15,7 @@ export class LicenseFormComponent {
   licenseData : any;
   devices : any[]=[];
   purchases : any[]=[];
+  response : string='';
   constructor( private fb : FormBuilder, private service : LicenseService, private deviceService : DeviceService, private purchaseService: PurchaseService, private router : Router){}
 
   ngOnInit()
@@ -31,6 +32,7 @@ export class LicenseFormComponent {
 
   onSubmit()
   {
+    this.response='';
     this.licenseData = {
       serialNo : this.licenseForm.get('serialNo')?.value?.trim(),
       licenseKey : this.licenseForm.get('licenseKey')?.value?.trim(),
@@ -48,11 +50,17 @@ export class LicenseFormComponent {
     this.service.register(this.licenseData)
     .subscribe(
       Response => {console.log("Success", Response),
-          console.log('License Added Successfully', Response);
+          console.log('License Added Successfully', Response),
           this.router.navigate(['/licenseData'])
       },
-      error => console.log('Error', error)
+      error => { console.log('Error', error) }
+      
+
     )
+  }
+  onCancel()
+  {
+    this.router.navigate(['/licenseData']);
   }
 
   getDevices()

@@ -1,57 +1,71 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { DeviceService } from '../device.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DeviceFormComponent } from '../device-form/device-form.component';
-interface Device{
-  id: number,
+import { DeviceService } from '../device.service';
+
+interface Device {
+  deviceId: number;
   deviceType: string;
   createdAt: string;
   createdBy: string;
   lastModifiedAt: string;
   lastModifiedBy: string;
 }
+
 @Component({
   selector: 'app-device-data',
   templateUrl: './device-data.component.html',
-  styleUrl: './device-data.component.css'
+  styleUrls: ['./device-data.component.css']
 })
-export class DeviceDataComponent {
-  editDeviceData : any;
-  onDelete(selectedDevice : any): void {
-    this.service.deleteDevice(selectedDevice.deviceType).subscribe(
-      response => {
-        // Remove the deleted device from the local list
-        // this.devices = this.devices.filter(device => device.deviceType !== id);
-        console.log('Device deleted successfully:', response);
+export class DeviceDataComponent implements OnInit {
+  devices: Device[] = [];
+
+  constructor(private service: DeviceService, private router: Router) {}
+
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.service.getDevices().subscribe(
+      (data: Device[]) => {
+        this.devices = data;
       },
-      error => {
-        console.error('Error deleting device:', error);
+      (error) => {
+        console.error('Error fetching devices:', error);
       }
     );
   }
-onEdit( thisDevice: Device) {
-  this.editDeviceData = {
-    deviceType : thisDevice.deviceType,
+
+  onEdit(selectedDevice: Device) {
+    console.log("Editing Device:", selectedDevice);  // Debugging log
+
+    this.router.navigate(['/deviceform'], {
+      queryParams: {
+        deviceId: selectedDevice.deviceId,
+        deviceType: selectedDevice.deviceType,
+        mode: 'edit' // To indicate edit mode
+      }
+    });
   }
-  this.router.navigate(['/deviceform']);
-throw new Error('Method not implemented.');
-}
-  devices: Device[] = [];
-  constructor(private http: HttpClient, private service : DeviceService, private router: Router){}
-  ngOnInit()
-  {
-    this.fetchData();
-  }
-  fetchData()
-  {
-   this.service.getDevices().subscribe(
-    (data: any[]) => {
-      this.devices = data;
+
+  onDelete(selectedDevice: Device) {
+    if (confirm(`Are you sure you want to delete ${selectedDevice.deviceType}?`)) {
+      this.service.deleteDevice(selectedDevice.deviceId).subscribe(
+        () => {
+          alert('Device deleted successfully.');
+          this.fetchData(); // Refresh list after deletion
+        },
+        (error) => {
+          console.error('Error deleting device:', error);
+          alert('Error deleting device.');
+        }
+      );
     }
-   )
   }
+
   navigateToAddDevice() {
-    this.router.navigate(['/deviceform']);
+    this.router.navigate(['/deviceform'], {
+      queryParams: { mode: 'add' } // Indicate add mode
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // ✅ Import FormsModule
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { NavComponent } from './Nav/nav/nav.component';
 import { PurchaseDataComponent } from './Purchase/purchase-data/purchase-data.component';
 import { LicenseDataComponent } from './License/license-data/license-data.component';
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,12 +21,13 @@ import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
     NavComponent,
     PurchaseDataComponent,
     LicenseDataComponent,
-    DashboardComponent  // Declare routing components here
+    DashboardComponent  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    FormsModule,         // ✅ Add FormsModule
+    ReactiveFormsModule, 
     HttpClientModule,
     RouterModule
   ],
