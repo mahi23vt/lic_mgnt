@@ -1,0 +1,15 @@
+<!-- Download Sample Excel -->
+<button class="btn btn-outline-dark custom-btn" (click)="downloadSample()">
+    Download Sample Excel
+  </button>
+  
+  <!-- File Upload -->
+  <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".xlsx" hidden />
+  <label for="fileInput" class="btn btn-outline-secondary custom-btn">Choose file</label>
+  <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+  
+  <!-- Upload Button (Yellow Color) -->
+  <button class="btn btn-warning custom-btn" (click)="uploadData()" [disabled]="!selectedFile">
+    Upload
+  </button>
+  

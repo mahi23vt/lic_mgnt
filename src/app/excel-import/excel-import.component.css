@@ -1,0 +1,8 @@
+.custom-btn {
+    margin: 5px; /* Adds a minimum gap of 5px between buttons */
+    font-weight: bold;
+  }
+  .custom-btn:last-child {
+    margin: 5px; /* Ensures no extra spacing after the last button */
+  }
+  

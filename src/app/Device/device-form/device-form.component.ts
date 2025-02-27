@@ -41,8 +41,8 @@ export class DeviceFormComponent implements OnInit {
       // Call add API
       this.service.register({ deviceType: this.deviceType }).subscribe(
         () => {
-          alert('Device added successfully.');
-          this.router.navigate(['/devicedata']);
+          // alert('Device added successfully.');
+          this.router.navigate(['/deviceData']);
         },
         (error) => {
           console.error('Error adding device:', error);

@@ -11,6 +11,7 @@ import { NavComponent } from './Nav/nav/nav.component';
 import { PurchaseDataComponent } from './Purchase/purchase-data/purchase-data.component';
 import { LicenseDataComponent } from './License/license-data/license-data.component';
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
+import { ExcelImportComponent } from './excel-import/excel-import.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
     NavComponent,
     PurchaseDataComponent,
     LicenseDataComponent,
-    DashboardComponent  
+    DashboardComponent,
+    ExcelImportComponent  
   ],
   imports: [
     BrowserModule,
