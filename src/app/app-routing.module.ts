@@ -10,6 +10,7 @@ import { NavComponent } from './Nav/nav/nav.component';
 import { LicenseDataComponent } from './License/license-data/license-data.component';
 import { PurchaseDataComponent } from './Purchase/purchase-data/purchase-data.component';
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
+import { UserDataComponent } from './Users/user-data/user-data.component';
 
 const routes: Routes = [
   { path: 'customerData', component: CustomerDataComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'licenseData', component: LicenseDataComponent},
   {path:'purchaseData', component: PurchaseDataComponent},
   {path: 'dashboard', component: DashboardComponent},
+  {path: 'userData', component: UserDataComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   
   
