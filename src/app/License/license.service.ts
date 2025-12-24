@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LicenseService {
-  _url = 'http://localhost:8080/license'
+  _url = 'http://localhost:1923/licensemanagement/license'
   constructor(private http: HttpClient) { }
 
   register(licenseData : any)
   {
+    console.log(licenseData);
     return this.http.post<any>(this._url, licenseData);
   }
 

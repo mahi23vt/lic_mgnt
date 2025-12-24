@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class ServiceService {
 
-  _url = 'http://localhost:8080/customer'
+  _url = 'http://localhost:1923/licensemanagement/customer'
   constructor(private http: HttpClient) { }
 
   register(customerData: any)

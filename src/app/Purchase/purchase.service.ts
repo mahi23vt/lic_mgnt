@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PurchaseService {
-  _url= 'http://localhost:8080/purchase'
+  _url= 'http://localhost:1923/licensemanagement/purchase'
   constructor(private http: HttpClient) { }
 
   register(purchaseData : any)

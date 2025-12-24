@@ -6,12 +6,13 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class DeviceService {
-  private _url = 'http://localhost:8080/device';
+  private _url = 'http://localhost:1923/licensemanagement/device';
   myResponse : any ;
 
   constructor(private http: HttpClient) {}
 
   register(deviceData: any): Observable<any> {
+    console.log(deviceData);
     return this.http.post<any>(this._url, deviceData);
   }
 

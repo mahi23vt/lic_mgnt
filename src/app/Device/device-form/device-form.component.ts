@@ -29,7 +29,7 @@ export class DeviceFormComponent implements OnInit {
       // Call update API
       this.service.editDevice({ deviceId: this.deviceId, deviceType: this.deviceType }).subscribe(
         () => {
-          // alert('Device updated successfully.');
+          alert('Device updated successfully.');
           this.router.navigate(['/deviceData']);
         },
         (error) => {
