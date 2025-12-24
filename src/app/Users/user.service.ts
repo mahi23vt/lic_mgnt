@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from './user-data/user-data.component';
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  _url = 'http://localhost:8080/users'
+  // _url = 'http://localhost:8080/users'
+  private _url = `${environment.apiBaseUrl}/purchase`;
   constructor( private http: HttpClient) { }
 
   getUsers(): Observable<User[]>{

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
-  private _url = 'http://localhost:1923/licensemanagement/device';
+  // private _url = 'http://localhost:1923/licensemanagement/device';
+  private _url = `${environment.apiBaseUrl}/purchase`;
   myResponse : any ;
 
   constructor(private http: HttpClient) {}
