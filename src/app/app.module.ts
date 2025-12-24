@@ -12,18 +12,23 @@ import { PurchaseDataComponent } from './Purchase/purchase-data/purchase-data.co
 import { LicenseDataComponent } from './License/license-data/license-data.component';
 import { DashboardComponent } from './Dashboard/dashboard/dashboard.component';
 import { ExcelImportComponent } from './excel-import/excel-import.component';
+import { UserDataComponent } from './Users/user-data/user-data.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents,
+    ...routingComponents,
     DeviceDataComponent,
     CustomerDataComponent,
     NavComponent,
     PurchaseDataComponent,
     LicenseDataComponent,
     DashboardComponent,
-    ExcelImportComponent  
+    ExcelImportComponent,
+    UserDataComponent,
+    LoginComponent  
   ],
   imports: [
     BrowserModule,
