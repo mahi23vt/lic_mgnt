@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 export class ServiceService {
 
   // _url = 'http://localhost:1923/licensemanagement/customer'
-  private _url = `${environment.apiBaseUrl}/purchase`;
+  private _url = `${environment.apiBaseUrl}/customer`;
   constructor(private http: HttpClient) { }
 
   register(customerData: any)

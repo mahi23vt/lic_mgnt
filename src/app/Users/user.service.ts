@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class UserService {
   // _url = 'http://localhost:8080/users'
-  private _url = `${environment.apiBaseUrl}/purchase`;
+  private _url = `${environment.apiBaseUrl}/users`;
   constructor( private http: HttpClient) { }
 
   getUsers(): Observable<User[]>{

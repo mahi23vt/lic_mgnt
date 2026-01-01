@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class LicenseService {
   // _url = 'http://localhost:1923/licensemanagement/license'
-  private _url = `${environment.apiBaseUrl}/purchase`;
+  private _url = `${environment.apiBaseUrl}/license`;
   constructor(private http: HttpClient) { }
 
   register(licenseData : any)

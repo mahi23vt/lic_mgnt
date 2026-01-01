@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class DeviceService {
   // private _url = 'http://localhost:1923/licensemanagement/device';
-  private _url = `${environment.apiBaseUrl}/purchase`;
+  private _url = `${environment.apiBaseUrl}/device`;
   myResponse : any ;
 
   constructor(private http: HttpClient) {}
